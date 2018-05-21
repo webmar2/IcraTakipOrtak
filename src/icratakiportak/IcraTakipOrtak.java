@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author leman
+ * @author thdursun
  */
 public class IcraTakipOrtak extends Application {
     
@@ -25,12 +25,13 @@ public class IcraTakipOrtak extends Application {
         
         stage.setScene(scene);
         stage.show();
+        
+        new LoginDialog();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
+
         launch(args);
     }
     
