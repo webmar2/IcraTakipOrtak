@@ -11,15 +11,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Paint;
+import javafx.stage.StageStyle;
 import javafx.util.Pair;
 
 /**
  * @author thdursun
  */
 public class LoginDialog {
+   
 
-    public LoginDialog() {
+    public Pair<String, String> getLoginDialogData() {
 
 // Standart bir Dialog oluştur ve özelliklerini belirt.
         Dialog< Pair<String, String>> dialog = new Dialog<>();
@@ -35,7 +41,7 @@ public class LoginDialog {
         ButtonType iptalButtonType = new ButtonType("İptal", ButtonData.CANCEL_CLOSE);
 // Giriş butonunu ve İptal butonunu pencereye ekle
         dialog.getDialogPane().getButtonTypes().addAll(loginButtonType,iptalButtonType);
-
+        
 // Kullanıcı ve Parola alanlarını ayarla ve ekle (label ve field)
         GridPane grid = new GridPane();
 
@@ -45,19 +51,21 @@ public class LoginDialog {
 
         TextField username = new TextField();
         username.setPromptText("Kullanıcı Adı");
-        username.setText("thdursun"); //Bunu otomatik alcak sonradan
+        username.setText( System.getProperty("user.name") ); //Bunu otomatik olarak alıyor
 
         PasswordField password = new PasswordField();
         password.setPromptText("Parola");
 
-        grid.add(new Label("Kullanıcı Adı:"), 0, 0);      //Grid ilk kolon ilk sütun a ekle
+        grid.add(new Label("Kullanıcı Adı:"), 1, 0);      //Grid ilk kolon ilk sütun a ekle
         grid.add(username, 1, 0);
-        grid.add(new Label("Parola:"), 0, 1);             //Grid ilk kolon 2nci sütun a ekle
+        grid.add(new Label("Parola:"), 1, 1);             //Grid ilk kolon 2nci sütun a ekle
         grid.add(password, 1, 1);
+        grid.setBackground(arkaPlan("999999"));
 
 // Kullanıcı Adı boş ise Login butonunu Pasif yapacağız. (Disable)
         Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType); //Dialog da verilen isimdeki butonu bul ve Node yap 
-        loginButton.setDisable(true); // Bu Node şimdi Pasif olsun
+        if (username.equals(null))
+            loginButton.setDisable(true); // username (Node) boş ise Pasif olsun
 
 // Lambda yazımı ile login butonunda (Node) değişiklik olursa ve yeni değer boş ise login butonunu Pasif yap.
         username.textProperty()
@@ -68,7 +76,7 @@ public class LoginDialog {
 
         dialog.getDialogPane().setContent(grid);
 
-// Otomatik olarak Kullanıcı Adına focus yap
+// Otomatik olarak password e focus yap
         Platform.runLater(
                 () -> password.requestFocus());
 
@@ -83,15 +91,18 @@ public class LoginDialog {
             return null;
         }
         );
-
-        Optional< Pair<String, String>> result = dialog.showAndWait();
-
-        result.ifPresent(usernamePassword
-                -> {
-            System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
-        }
-        );
+        
+        dialog.initStyle(StageStyle.DECORATED);
+        
+        Optional<Pair<String,String>> sonuc = dialog.showAndWait();
+        return new Pair<>(sonuc.get().getKey(), sonuc.get().getKey());
         
     }
 
+    public Background arkaPlan (String value){
+        
+        BackgroundFill fills = new BackgroundFill(Paint.valueOf(value), CornerRadii.EMPTY, Insets.EMPTY);
+        Background bg = new Background(fills);
+        return bg;
+    }
 }
