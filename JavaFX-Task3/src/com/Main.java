@@ -26,6 +26,7 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
         System.out.println("1");
+        // Yorum
     }
 
     /**
