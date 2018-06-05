@@ -1,5 +1,7 @@
 package borc;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXToolbar;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,13 +17,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.Background;
 
 public class YeniKayitBorcController implements Initializable {
 
     static String query = "";
     static Statement statement = null;
+    
+    
+    @FXML
+    private JFXToolbar ToolbarFX;
+
+    @FXML
+    private JFXButton ToolbarSave;
 
     @FXML
     private Label ResultLabel;
@@ -34,6 +46,9 @@ public class YeniKayitBorcController implements Initializable {
 
     @FXML
     private Menu borcDelete, borcluSave, menuFile;
+
+    @FXML
+    private MenuItem borcluSave1;
 
     @FXML
     private TextField borcluKodu, borcluAd, borcluTCNo;
@@ -109,6 +124,14 @@ public class YeniKayitBorcController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            
+            ToolbarSave.setStyle("-fx-background-image: url('/icon/save1.png')");
+            
+            final Tooltip tooltipToolbarSave = new Tooltip();
+            tooltipToolbarSave.setText("Kaydet");
+            ToolbarSave.setTooltip(tooltipToolbarSave);
+           
+            
             System.out.println("Driver loaded");
             // Establish a connection
             Connection connection;
