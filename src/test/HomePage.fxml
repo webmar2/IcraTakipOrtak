@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPanel" prefHeight="538.0" prefWidth="1128.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icratakiportak.HomePageController">
+<AnchorPane id="AnchorPane" fx:id="anchorPanel" prefHeight="538.0" prefWidth="1128.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.HomePageController">
     <children>
         <Button fx:id="button" layoutX="500.0" layoutY="424.0" onAction="#handleButtonAction" text="Click Me!" />
         <Label fx:id="label" layoutX="530.0" layoutY="467.0" minHeight="16" minWidth="69" text="Info" />

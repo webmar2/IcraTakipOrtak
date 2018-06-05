@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package icratakiportak;
+package test;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -37,31 +32,27 @@ public class HomePageController implements Initializable {
         label.setText("Hello World!");
     }
 
-    
-    public String getCurrentTime(){
+    public String getCurrentTime() {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        return( sdf.format(cal.getTime()) );
+        return (sdf.format(cal.getTime()));
     }
 
-    public Runnable bilgileriAtaRunnable (){
-        return new Runnable() {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 bilgilerLabel.setText(
-                "Program Kullanıcı Adı : " + IcraTakipOrtak.programUsername + "\n"
-                + "Windows Kullanıcı Adı : " + System.getProperty("user.name") + "\n"
-                + "Java Versionu : " + System.getProperty("java.version") + "\n"
-                + "İşletim Sistemi : " + System.getProperty("os.name") + "\n" +
-                "Oturum açılan saat : " + getCurrentTime()
-        );
+                        "Program Kullanıcı Adı : " + IcraTakipOrtak.programUsername + "\n"
+                        + "Windows Kullanıcı Adı : " + System.getProperty("user.name") + "\n"
+                        + "Java Versionu : " + System.getProperty("java.version") + "\n"
+                        + "İşletim Sistemi : " + System.getProperty("os.name") + "\n"
+                        + "Oturum açılan saat : " + getCurrentTime()
+                );
             }
-        };
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        bilgileriAtaRunnable().run();
+        });
+
     }
 
 }

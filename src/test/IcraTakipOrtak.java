@@ -1,7 +1,8 @@
-package icratakiportak;
+package test;
 
 import javafx.scene.input.KeyEvent;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,15 +16,39 @@ import javafx.util.Pair;
  */
 public class IcraTakipOrtak extends Application {
 
-    static String programUsername;
+    static String programUsername = "Henuz Yok";
+    static String password = "Henuz Yok";
+    static LoginDialog loginPenceresi = new LoginDialog(); // Boş Constructor olmadığı için bir şey yapmaz.
+
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
 
-        Pair<String, String> result = new LoginDialog().getLoginDialogData(); //kullanıcı adı ve parolayı döner (Pair)
-        programUsername = result.getKey();
-        SqlIslemleri.KullanıcıSorgula(programUsername, result.getValue());
+        loginProcess();
+        mainStageShow(stage);
+
+    }
+
+    public void loginProcess() {
+
+        Pair<String, String> resultPair = LoginDialog.getLoginDialogResult(); //kullanıcı adı ve parolayı döner (Pair)
+        programUsername = resultPair.getKey();
+        password = resultPair.getValue();
+        int i = 0;
+        while (!isLoginSuccessfull()) {
+            LoginDialog.loginInfoLabel.setText("Tekrar deneyiniz... "+ i);
+            System.out.println("Hatalı oldu...");
+            //Burası metod olması lazım
+            resultPair = LoginDialog.getLoginDialogResult();
+        }
+    }
+
+    public boolean isLoginSuccessfull() {
+        return SqlIslemleri.checkUserAndPass(programUsername, password);
+    }
+
+    public void mainStageShow(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
 
         Scene scene = new Scene(root);
         //<editor-fold defaultstate="collapsed" desc="Hangi tuşa basınca ne olsun.">
@@ -36,6 +61,9 @@ public class IcraTakipOrtak extends Application {
                         break;
                     case F2:
                         System.out.println("F2 e basıldı");
+                        break;
+                    case ESCAPE:
+                        Platform.exit();
                         break;
                 }
             }
@@ -55,7 +83,6 @@ public class IcraTakipOrtak extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static void main(String[] args) {

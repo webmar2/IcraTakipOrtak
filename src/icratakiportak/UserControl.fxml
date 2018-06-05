@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="userControlAnchorPane" prefHeight="463.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icratakiportak.UserControlController">
+   <children>
+      <JFXButton fx:id="jfxButton" alignment="CENTER" layoutX="300.0" layoutY="215.0" onAction="#handleButtonAction" prefHeight="31.0" prefWidth="100.0" style="-fx-border-color: #888888;" text="Tamam" />
+      <JFXListView depth="10" editable="true" fixedCellSize="20.0" layoutX="41.0" layoutY="32.0" prefHeight="400.0" prefWidth="223.0" style="-fx-background-color: #999999;" verticalGap="10.0" />
+   </children>
+</AnchorPane>

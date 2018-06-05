@@ -1,4 +1,4 @@
-package icratakiportak;
+package test;
 
 import java.sql.*;
 
@@ -7,19 +7,16 @@ import java.sql.*;
  */
 public class SqlIslemleri {
 
-    public static boolean KullanıcıSorgula(String user, String pass) {
-        return check(user, pass);
-    }
-
     public static Connection ConnectDB() {
         Connection conn = null;
         try {
 
-            conn = DriverManager.getConnection("jdbc:sqlite:D:/JAVA/IcraTakipOrtak/nbproject/sqlite_db.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:D:/JAVA/IcraTakipOrtak/nbproject/users.db");
             System.out.println("Connection to SQLite has been established.");
-
             return conn;
+            
         } catch (SQLException ex) {
+            System.out.println("SQL yazım hatası tespit var.");
         } finally {
             try {
                 if (conn == null) {
@@ -32,27 +29,30 @@ public class SqlIslemleri {
         return conn;
     }
 
-    public static boolean check(String user, String pass) {
+    public static boolean checkUserAndPass(String user, String pass) {
         String sql = "SELECT username, password FROM tableUSERPASS";
 
-        try (Connection conn = ConnectDB();
+        try (
+                Connection conn = ConnectDB();
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
+                ResultSet rs = stmt.executeQuery(sql);
+            ) {
 
-            // loop through the result set
+            // Sonuc dizisinde döngü oluştur ve kullanıcı parola eşleştirmesi yap.
             while (rs.next()) {
-                System.out.println(rs.getString("username") + "\t"
-                        + rs.getString("password"));
-                if (user.equals(rs.getString("username"))) {
-                    if (pass.equals(rs.getString("password"))) {
-                        System.out.println("Login Başarılı.");
-                        return true;
-                    }
+                if ( user.equalsIgnoreCase(rs.getString("username")) && pass.equals(rs.getString("password"))) {
+
+                    System.out.println("Login Başarılı.");
+                    System.out.println("Bağlanan Kullanıcı: " + rs.getString("username") + "\t"
+                            + rs.getString("password"));
+                    return true;
+
                 }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        
         System.out.println("Login Başarısız.");
         return false;
     }
