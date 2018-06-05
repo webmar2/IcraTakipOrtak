@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.HomeFXMLController">
+   <children>
+      <MenuBar fx:id="menuBarHome" cache="true" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="681.0" style="-fx-background-color: #B0BEC5;">
+        <menus>
+          <Menu fx:id="MenuFile" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="Close" mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu fx:id="edit" mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem fx:id="delete" mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu fx:id="help" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+            <Menu fx:id="Tanimlar" mnemonicParsing="false" text="Tanımlar">
+               <items>
+                  <MenuItem fx:id="muvitem" mnemonicParsing="false" onAction="#btnMuvekkil" text="Müvekkil" />
+                  <MenuItem mnemonicParsing="false" onAction="#btnDosyalar" text="Dosyalar" />
+                  <MenuItem mnemonicParsing="false" onAction="#btnBorclu" text="Borçlu" />
+                  <MenuItem mnemonicParsing="false" onAction="#btnBuro" text="Büro Bilgi Ekranı" />
+                  <MenuItem mnemonicParsing="false" onAction="#btnYazilim" text="Yazılım Yönetim Ekranı" />
+                  <MenuItem mnemonicParsing="false" onAction="#btnFaiz" text="Faiz Rehberi" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</Pane>
