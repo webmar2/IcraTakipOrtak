@@ -21,7 +21,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.Background;
 
 public class YeniKayitBorcController implements Initializable {
 

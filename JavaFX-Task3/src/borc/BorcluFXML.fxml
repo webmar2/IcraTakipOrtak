@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="borc.BorclulFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="borc.BorclulFXMLController">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -20,11 +21,7 @@
                         <MenuItem mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Yenile">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
+                <Menu mnemonicParsing="false" text="Yenile" />
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
@@ -35,6 +32,16 @@
                   <Point3D />
                </rotationAxis>
             </MenuBar>
+            <TableView fx:id="tableBorclu" layoutX="14.0" layoutY="46.0" prefHeight="351.0" prefWidth="581.0">
+              <columns>
+                <TableColumn fx:id="BkoduColumn" prefWidth="72.0" text="Bkodu" />
+                <TableColumn fx:id="BAdSoyadColumn" prefWidth="92.0" text="BAdSoyad" />
+                  <TableColumn fx:id="BAdresColumn" prefWidth="100.0" text="BAdres" />
+                  <TableColumn fx:id="BTelefonColumn" prefWidth="87.0" text="BTelefon" />
+                  <TableColumn fx:id="BEpostaColumn" prefWidth="102.0" text="BEposta" />
+                  <TableColumn fx:id="BTCNoColumn" prefWidth="124.0" text="BTCNo" />
+              </columns>
+            </TableView>
          </children>
       </Pane>
    </children>
